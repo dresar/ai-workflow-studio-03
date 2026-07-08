@@ -9,38 +9,314 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AppTechPreferencesRouteImport } from './routes/app.tech-preferences'
+import { Route as AppTasksRouteImport } from './routes/app.tasks'
+import { Route as AppQuestionsRouteImport } from './routes/app.questions'
+import { Route as AppPromptRouteImport } from './routes/app.prompt'
+import { Route as AppPrdRouteImport } from './routes/app.prd'
+import { Route as AppCanvasRouteImport } from './routes/app.canvas'
+import { Route as AdminTemplatesRouteImport } from './routes/admin.templates'
+import { Route as AdminTechnologyRouteImport } from './routes/admin.technology'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminRotationRouteImport } from './routes/admin.rotation'
+import { Route as AdminQuestionsRouteImport } from './routes/admin.questions'
+import { Route as AdminPromptEngineRouteImport } from './routes/admin.prompt-engine'
+import { Route as AdminMonitoringRouteImport } from './routes/admin.monitoring'
+import { Route as AdminLogsRouteImport } from './routes/admin.logs'
+import { Route as AdminApiKeyRouteImport } from './routes/admin.api-key'
+import { Route as AdminAiProviderRouteImport } from './routes/admin.ai-provider'
 
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AppTechPreferencesRoute = AppTechPreferencesRouteImport.update({
+  id: '/tech-preferences',
+  path: '/tech-preferences',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTasksRoute = AppTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppQuestionsRoute = AppQuestionsRouteImport.update({
+  id: '/questions',
+  path: '/questions',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPromptRoute = AppPromptRouteImport.update({
+  id: '/prompt',
+  path: '/prompt',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPrdRoute = AppPrdRouteImport.update({
+  id: '/prd',
+  path: '/prd',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCanvasRoute = AppCanvasRouteImport.update({
+  id: '/canvas',
+  path: '/canvas',
+  getParentRoute: () => AppRoute,
+} as any)
+const AdminTemplatesRoute = AdminTemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTechnologyRoute = AdminTechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminRotationRoute = AdminRotationRouteImport.update({
+  id: '/rotation',
+  path: '/rotation',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminQuestionsRoute = AdminQuestionsRouteImport.update({
+  id: '/questions',
+  path: '/questions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPromptEngineRoute = AdminPromptEngineRouteImport.update({
+  id: '/prompt-engine',
+  path: '/prompt-engine',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMonitoringRoute = AdminMonitoringRouteImport.update({
+  id: '/monitoring',
+  path: '/monitoring',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLogsRoute = AdminLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminApiKeyRoute = AdminApiKeyRouteImport.update({
+  id: '/api-key',
+  path: '/api-key',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAiProviderRoute = AdminAiProviderRouteImport.update({
+  id: '/ai-provider',
+  path: '/ai-provider',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/admin/ai-provider': typeof AdminAiProviderRoute
+  '/admin/api-key': typeof AdminApiKeyRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
+  '/admin/prompt-engine': typeof AdminPromptEngineRoute
+  '/admin/questions': typeof AdminQuestionsRoute
+  '/admin/rotation': typeof AdminRotationRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/technology': typeof AdminTechnologyRoute
+  '/admin/templates': typeof AdminTemplatesRoute
+  '/app/canvas': typeof AppCanvasRoute
+  '/app/prd': typeof AppPrdRoute
+  '/app/prompt': typeof AppPromptRoute
+  '/app/questions': typeof AppQuestionsRoute
+  '/app/tasks': typeof AppTasksRoute
+  '/app/tech-preferences': typeof AppTechPreferencesRoute
+  '/admin/': typeof AdminIndexRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/admin/ai-provider': typeof AdminAiProviderRoute
+  '/admin/api-key': typeof AdminApiKeyRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
+  '/admin/prompt-engine': typeof AdminPromptEngineRoute
+  '/admin/questions': typeof AdminQuestionsRoute
+  '/admin/rotation': typeof AdminRotationRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/technology': typeof AdminTechnologyRoute
+  '/admin/templates': typeof AdminTemplatesRoute
+  '/app/canvas': typeof AppCanvasRoute
+  '/app/prd': typeof AppPrdRoute
+  '/app/prompt': typeof AppPromptRoute
+  '/app/questions': typeof AppQuestionsRoute
+  '/app/tasks': typeof AppTasksRoute
+  '/app/tech-preferences': typeof AppTechPreferencesRoute
+  '/admin': typeof AdminIndexRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/admin/ai-provider': typeof AdminAiProviderRoute
+  '/admin/api-key': typeof AdminApiKeyRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
+  '/admin/prompt-engine': typeof AdminPromptEngineRoute
+  '/admin/questions': typeof AdminQuestionsRoute
+  '/admin/rotation': typeof AdminRotationRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/technology': typeof AdminTechnologyRoute
+  '/admin/templates': typeof AdminTemplatesRoute
+  '/app/canvas': typeof AppCanvasRoute
+  '/app/prd': typeof AppPrdRoute
+  '/app/prompt': typeof AppPromptRoute
+  '/app/questions': typeof AppQuestionsRoute
+  '/app/tasks': typeof AppTasksRoute
+  '/app/tech-preferences': typeof AppTechPreferencesRoute
+  '/admin/': typeof AdminIndexRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/app'
+    | '/login'
+    | '/admin/ai-provider'
+    | '/admin/api-key'
+    | '/admin/logs'
+    | '/admin/monitoring'
+    | '/admin/prompt-engine'
+    | '/admin/questions'
+    | '/admin/rotation'
+    | '/admin/settings'
+    | '/admin/technology'
+    | '/admin/templates'
+    | '/app/canvas'
+    | '/app/prd'
+    | '/app/prompt'
+    | '/app/questions'
+    | '/app/tasks'
+    | '/app/tech-preferences'
+    | '/admin/'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/admin/ai-provider'
+    | '/admin/api-key'
+    | '/admin/logs'
+    | '/admin/monitoring'
+    | '/admin/prompt-engine'
+    | '/admin/questions'
+    | '/admin/rotation'
+    | '/admin/settings'
+    | '/admin/technology'
+    | '/admin/templates'
+    | '/app/canvas'
+    | '/app/prd'
+    | '/app/prompt'
+    | '/app/questions'
+    | '/app/tasks'
+    | '/app/tech-preferences'
+    | '/admin'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/app'
+    | '/login'
+    | '/admin/ai-provider'
+    | '/admin/api-key'
+    | '/admin/logs'
+    | '/admin/monitoring'
+    | '/admin/prompt-engine'
+    | '/admin/questions'
+    | '/admin/rotation'
+    | '/admin/settings'
+    | '/admin/technology'
+    | '/admin/templates'
+    | '/app/canvas'
+    | '/app/prd'
+    | '/app/prompt'
+    | '/app/questions'
+    | '/app/tasks'
+    | '/app/tech-preferences'
+    | '/admin/'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +324,192 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/app/tech-preferences': {
+      id: '/app/tech-preferences'
+      path: '/tech-preferences'
+      fullPath: '/app/tech-preferences'
+      preLoaderRoute: typeof AppTechPreferencesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/tasks': {
+      id: '/app/tasks'
+      path: '/tasks'
+      fullPath: '/app/tasks'
+      preLoaderRoute: typeof AppTasksRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/questions': {
+      id: '/app/questions'
+      path: '/questions'
+      fullPath: '/app/questions'
+      preLoaderRoute: typeof AppQuestionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/prompt': {
+      id: '/app/prompt'
+      path: '/prompt'
+      fullPath: '/app/prompt'
+      preLoaderRoute: typeof AppPromptRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/prd': {
+      id: '/app/prd'
+      path: '/prd'
+      fullPath: '/app/prd'
+      preLoaderRoute: typeof AppPrdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/canvas': {
+      id: '/app/canvas'
+      path: '/canvas'
+      fullPath: '/app/canvas'
+      preLoaderRoute: typeof AppCanvasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/admin/templates': {
+      id: '/admin/templates'
+      path: '/templates'
+      fullPath: '/admin/templates'
+      preLoaderRoute: typeof AdminTemplatesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/technology': {
+      id: '/admin/technology'
+      path: '/technology'
+      fullPath: '/admin/technology'
+      preLoaderRoute: typeof AdminTechnologyRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/rotation': {
+      id: '/admin/rotation'
+      path: '/rotation'
+      fullPath: '/admin/rotation'
+      preLoaderRoute: typeof AdminRotationRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/questions': {
+      id: '/admin/questions'
+      path: '/questions'
+      fullPath: '/admin/questions'
+      preLoaderRoute: typeof AdminQuestionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/prompt-engine': {
+      id: '/admin/prompt-engine'
+      path: '/prompt-engine'
+      fullPath: '/admin/prompt-engine'
+      preLoaderRoute: typeof AdminPromptEngineRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/monitoring': {
+      id: '/admin/monitoring'
+      path: '/monitoring'
+      fullPath: '/admin/monitoring'
+      preLoaderRoute: typeof AdminMonitoringRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/logs': {
+      id: '/admin/logs'
+      path: '/logs'
+      fullPath: '/admin/logs'
+      preLoaderRoute: typeof AdminLogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/api-key': {
+      id: '/admin/api-key'
+      path: '/api-key'
+      fullPath: '/admin/api-key'
+      preLoaderRoute: typeof AdminApiKeyRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/ai-provider': {
+      id: '/admin/ai-provider'
+      path: '/ai-provider'
+      fullPath: '/admin/ai-provider'
+      preLoaderRoute: typeof AdminAiProviderRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAiProviderRoute: typeof AdminAiProviderRoute
+  AdminApiKeyRoute: typeof AdminApiKeyRoute
+  AdminLogsRoute: typeof AdminLogsRoute
+  AdminMonitoringRoute: typeof AdminMonitoringRoute
+  AdminPromptEngineRoute: typeof AdminPromptEngineRoute
+  AdminQuestionsRoute: typeof AdminQuestionsRoute
+  AdminRotationRoute: typeof AdminRotationRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminTechnologyRoute: typeof AdminTechnologyRoute
+  AdminTemplatesRoute: typeof AdminTemplatesRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAiProviderRoute: AdminAiProviderRoute,
+  AdminApiKeyRoute: AdminApiKeyRoute,
+  AdminLogsRoute: AdminLogsRoute,
+  AdminMonitoringRoute: AdminMonitoringRoute,
+  AdminPromptEngineRoute: AdminPromptEngineRoute,
+  AdminQuestionsRoute: AdminQuestionsRoute,
+  AdminRotationRoute: AdminRotationRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminTechnologyRoute: AdminTechnologyRoute,
+  AdminTemplatesRoute: AdminTemplatesRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface AppRouteChildren {
+  AppCanvasRoute: typeof AppCanvasRoute
+  AppPrdRoute: typeof AppPrdRoute
+  AppPromptRoute: typeof AppPromptRoute
+  AppQuestionsRoute: typeof AppQuestionsRoute
+  AppTasksRoute: typeof AppTasksRoute
+  AppTechPreferencesRoute: typeof AppTechPreferencesRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppCanvasRoute: AppCanvasRoute,
+  AppPrdRoute: AppPrdRoute,
+  AppPromptRoute: AppPromptRoute,
+  AppQuestionsRoute: AppQuestionsRoute,
+  AppTasksRoute: AppTasksRoute,
+  AppTechPreferencesRoute: AppTechPreferencesRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
