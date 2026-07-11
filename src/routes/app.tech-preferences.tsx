@@ -12,6 +12,8 @@ import {
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
+import { api } from "@/lib/api";
+
 export const Route = createFileRoute("/app/tech-preferences")({
   component: TechPref,
 });
@@ -56,6 +58,34 @@ function StepIndicator() {
 function TechPref() {
   const navigate = useNavigate();
   const [choice, setChoice] = useState<"auto" | "manual" | null>(null);
+  const [selections, setSelections] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(false);
+
+  async function handleNext() {
+    if (!choice) return;
+    const projectId = typeof window !== "undefined" ? localStorage.getItem("active_project_id") : null;
+    if (!projectId) return;
+
+    setLoading(true);
+    try {
+      await api.projects.update(projectId, { techSelectionMode: choice });
+      if (choice === "manual") {
+        const technologies = Object.entries(selections).map(([category, technologyName]) => ({
+          category,
+          technologyName,
+          isAiSelected: false,
+        }));
+        if (technologies.length > 0) {
+          await api.projects.saveTechnologies(projectId, { technologies });
+        }
+      }
+      navigate({ to: "/app/questions" });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-12">
@@ -84,6 +114,7 @@ function TechPref() {
         ].map(({ key, title, desc, icon: Icon }) => (
           <button
             key={key}
+            disabled={loading}
             onClick={() => setChoice(key)}
             className={cn(
               "card-premium group text-left transition hover:border-primary/40",
@@ -107,7 +138,11 @@ function TechPref() {
             {DROPDOWNS.map((d) => (
               <div key={d.key} className="space-y-1.5">
                 <Label>{d.label}</Label>
-                <Select>
+                <Select
+                  value={selections[d.key] || ""}
+                  onValueChange={(val) => setSelections((prev) => ({ ...prev, [d.key]: val }))}
+                  disabled={loading}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder={`Pilih ${d.label.toLowerCase()}`} />
                   </SelectTrigger>
@@ -126,16 +161,16 @@ function TechPref() {
       )}
 
       <div className="mt-8 flex items-center justify-between">
-        <Button variant="ghost" asChild>
+        <Button variant="ghost" asChild disabled={loading}>
           <Link to="/app">
             <ArrowLeft className="mr-2 h-4 w-4" /> Kembali
           </Link>
         </Button>
         <Button
-          onClick={() => navigate({ to: "/app/questions" })}
-          disabled={!choice}
+          onClick={handleNext}
+          disabled={!choice || loading}
         >
-          Lanjut <ArrowRight className="ml-2 h-4 w-4" />
+          {loading ? "Menyimpan..." : "Lanjut"} <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
     </div>

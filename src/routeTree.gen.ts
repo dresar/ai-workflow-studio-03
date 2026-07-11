@@ -17,15 +17,16 @@ import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AppTechPreferencesRouteImport } from './routes/app.tech-preferences'
 import { Route as AppTasksRouteImport } from './routes/app.tasks'
+import { Route as AppSqlRouteImport } from './routes/app.sql'
 import { Route as AppQuestionsRouteImport } from './routes/app.questions'
 import { Route as AppPromptRouteImport } from './routes/app.prompt'
 import { Route as AppPrdRouteImport } from './routes/app.prd'
 import { Route as AppCanvasRouteImport } from './routes/app.canvas'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminTemplatesRouteImport } from './routes/admin.templates'
 import { Route as AdminTechnologyRouteImport } from './routes/admin.technology'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminRotationRouteImport } from './routes/admin.rotation'
-import { Route as AdminQuestionsRouteImport } from './routes/admin.questions'
 import { Route as AdminPromptEngineRouteImport } from './routes/admin.prompt-engine'
 import { Route as AdminMonitoringRouteImport } from './routes/admin.monitoring'
 import { Route as AdminLogsRouteImport } from './routes/admin.logs'
@@ -72,6 +73,11 @@ const AppTasksRoute = AppTasksRouteImport.update({
   path: '/tasks',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSqlRoute = AppSqlRouteImport.update({
+  id: '/sql',
+  path: '/sql',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppQuestionsRoute = AppQuestionsRouteImport.update({
   id: '/questions',
   path: '/questions',
@@ -92,6 +98,11 @@ const AppCanvasRoute = AppCanvasRouteImport.update({
   path: '/canvas',
   getParentRoute: () => AppRoute,
 } as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminTemplatesRoute = AdminTemplatesRouteImport.update({
   id: '/templates',
   path: '/templates',
@@ -110,11 +121,6 @@ const AdminSettingsRoute = AdminSettingsRouteImport.update({
 const AdminRotationRoute = AdminRotationRouteImport.update({
   id: '/rotation',
   path: '/rotation',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminQuestionsRoute = AdminQuestionsRouteImport.update({
-  id: '/questions',
-  path: '/questions',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminPromptEngineRoute = AdminPromptEngineRouteImport.update({
@@ -153,15 +159,16 @@ export interface FileRoutesByFullPath {
   '/admin/logs': typeof AdminLogsRoute
   '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/prompt-engine': typeof AdminPromptEngineRoute
-  '/admin/questions': typeof AdminQuestionsRoute
   '/admin/rotation': typeof AdminRotationRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/technology': typeof AdminTechnologyRoute
   '/admin/templates': typeof AdminTemplatesRoute
+  '/admin/users': typeof AdminUsersRoute
   '/app/canvas': typeof AppCanvasRoute
   '/app/prd': typeof AppPrdRoute
   '/app/prompt': typeof AppPromptRoute
   '/app/questions': typeof AppQuestionsRoute
+  '/app/sql': typeof AppSqlRoute
   '/app/tasks': typeof AppTasksRoute
   '/app/tech-preferences': typeof AppTechPreferencesRoute
   '/admin/': typeof AdminIndexRoute
@@ -175,15 +182,16 @@ export interface FileRoutesByTo {
   '/admin/logs': typeof AdminLogsRoute
   '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/prompt-engine': typeof AdminPromptEngineRoute
-  '/admin/questions': typeof AdminQuestionsRoute
   '/admin/rotation': typeof AdminRotationRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/technology': typeof AdminTechnologyRoute
   '/admin/templates': typeof AdminTemplatesRoute
+  '/admin/users': typeof AdminUsersRoute
   '/app/canvas': typeof AppCanvasRoute
   '/app/prd': typeof AppPrdRoute
   '/app/prompt': typeof AppPromptRoute
   '/app/questions': typeof AppQuestionsRoute
+  '/app/sql': typeof AppSqlRoute
   '/app/tasks': typeof AppTasksRoute
   '/app/tech-preferences': typeof AppTechPreferencesRoute
   '/admin': typeof AdminIndexRoute
@@ -200,15 +208,16 @@ export interface FileRoutesById {
   '/admin/logs': typeof AdminLogsRoute
   '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/prompt-engine': typeof AdminPromptEngineRoute
-  '/admin/questions': typeof AdminQuestionsRoute
   '/admin/rotation': typeof AdminRotationRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/technology': typeof AdminTechnologyRoute
   '/admin/templates': typeof AdminTemplatesRoute
+  '/admin/users': typeof AdminUsersRoute
   '/app/canvas': typeof AppCanvasRoute
   '/app/prd': typeof AppPrdRoute
   '/app/prompt': typeof AppPromptRoute
   '/app/questions': typeof AppQuestionsRoute
+  '/app/sql': typeof AppSqlRoute
   '/app/tasks': typeof AppTasksRoute
   '/app/tech-preferences': typeof AppTechPreferencesRoute
   '/admin/': typeof AdminIndexRoute
@@ -226,15 +235,16 @@ export interface FileRouteTypes {
     | '/admin/logs'
     | '/admin/monitoring'
     | '/admin/prompt-engine'
-    | '/admin/questions'
     | '/admin/rotation'
     | '/admin/settings'
     | '/admin/technology'
     | '/admin/templates'
+    | '/admin/users'
     | '/app/canvas'
     | '/app/prd'
     | '/app/prompt'
     | '/app/questions'
+    | '/app/sql'
     | '/app/tasks'
     | '/app/tech-preferences'
     | '/admin/'
@@ -248,15 +258,16 @@ export interface FileRouteTypes {
     | '/admin/logs'
     | '/admin/monitoring'
     | '/admin/prompt-engine'
-    | '/admin/questions'
     | '/admin/rotation'
     | '/admin/settings'
     | '/admin/technology'
     | '/admin/templates'
+    | '/admin/users'
     | '/app/canvas'
     | '/app/prd'
     | '/app/prompt'
     | '/app/questions'
+    | '/app/sql'
     | '/app/tasks'
     | '/app/tech-preferences'
     | '/admin'
@@ -272,15 +283,16 @@ export interface FileRouteTypes {
     | '/admin/logs'
     | '/admin/monitoring'
     | '/admin/prompt-engine'
-    | '/admin/questions'
     | '/admin/rotation'
     | '/admin/settings'
     | '/admin/technology'
     | '/admin/templates'
+    | '/admin/users'
     | '/app/canvas'
     | '/app/prd'
     | '/app/prompt'
     | '/app/questions'
+    | '/app/sql'
     | '/app/tasks'
     | '/app/tech-preferences'
     | '/admin/'
@@ -352,6 +364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTasksRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/sql': {
+      id: '/app/sql'
+      path: '/sql'
+      fullPath: '/app/sql'
+      preLoaderRoute: typeof AppSqlRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/questions': {
       id: '/app/questions'
       path: '/questions'
@@ -380,6 +399,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCanvasRouteImport
       parentRoute: typeof AppRoute
     }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/templates': {
       id: '/admin/templates'
       path: '/templates'
@@ -406,13 +432,6 @@ declare module '@tanstack/react-router' {
       path: '/rotation'
       fullPath: '/admin/rotation'
       preLoaderRoute: typeof AdminRotationRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/questions': {
-      id: '/admin/questions'
-      path: '/questions'
-      fullPath: '/admin/questions'
-      preLoaderRoute: typeof AdminQuestionsRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/prompt-engine': {
@@ -459,11 +478,11 @@ interface AdminRouteChildren {
   AdminLogsRoute: typeof AdminLogsRoute
   AdminMonitoringRoute: typeof AdminMonitoringRoute
   AdminPromptEngineRoute: typeof AdminPromptEngineRoute
-  AdminQuestionsRoute: typeof AdminQuestionsRoute
   AdminRotationRoute: typeof AdminRotationRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminTechnologyRoute: typeof AdminTechnologyRoute
   AdminTemplatesRoute: typeof AdminTemplatesRoute
+  AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -473,11 +492,11 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminLogsRoute: AdminLogsRoute,
   AdminMonitoringRoute: AdminMonitoringRoute,
   AdminPromptEngineRoute: AdminPromptEngineRoute,
-  AdminQuestionsRoute: AdminQuestionsRoute,
   AdminRotationRoute: AdminRotationRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminTechnologyRoute: AdminTechnologyRoute,
   AdminTemplatesRoute: AdminTemplatesRoute,
+  AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
@@ -488,6 +507,7 @@ interface AppRouteChildren {
   AppPrdRoute: typeof AppPrdRoute
   AppPromptRoute: typeof AppPromptRoute
   AppQuestionsRoute: typeof AppQuestionsRoute
+  AppSqlRoute: typeof AppSqlRoute
   AppTasksRoute: typeof AppTasksRoute
   AppTechPreferencesRoute: typeof AppTechPreferencesRoute
   AppIndexRoute: typeof AppIndexRoute
@@ -498,6 +518,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppPrdRoute: AppPrdRoute,
   AppPromptRoute: AppPromptRoute,
   AppQuestionsRoute: AppQuestionsRoute,
+  AppSqlRoute: AppSqlRoute,
   AppTasksRoute: AppTasksRoute,
   AppTechPreferencesRoute: AppTechPreferencesRoute,
   AppIndexRoute: AppIndexRoute,
@@ -514,3 +535,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

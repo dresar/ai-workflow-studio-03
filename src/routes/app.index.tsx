@@ -11,6 +11,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { api } from "@/lib/api";
+
 export const Route = createFileRoute("/app/")({
   component: WorkflowHome,
 });
@@ -18,8 +20,31 @@ export const Route = createFileRoute("/app/")({
 function WorkflowHome() {
   const navigate = useNavigate();
   const [idea, setIdea] = useState("");
-  const [provider, setProvider] = useState("gemini");
+  const provider = "collaborative";
   const [lang, setLang] = useState("id");
+  const [loading, setLoading] = useState(false);
+
+  async function handleStart() {
+    setLoading(true);
+    try {
+      const project = await api.projects.create({
+        name: `Project ${new Date().toLocaleDateString()}`,
+        idea,
+        language: lang === "id" ? "id" : "en",
+        preferredAiTarget: "Cursor",
+        techSelectionMode: "manual",
+      });
+      if (typeof window !== "undefined") {
+        localStorage.setItem("active_project_id", project.id);
+        localStorage.setItem("active_provider", provider);
+      }
+      navigate({ to: "/app/tech-preferences" });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 py-16">
@@ -41,20 +66,10 @@ function WorkflowHome() {
             onChange={(e) => setIdea(e.target.value)}
             placeholder="Contoh: Saya ingin membangun marketplace UMKM lokal dengan fitur pesan-antar, pembayaran, dan dashboard penjual…"
             className="min-h-[140px] resize-none border-0 bg-transparent text-base focus-visible:ring-0"
+            disabled={loading}
           />
           <div className="flex flex-wrap items-center gap-2 border-t border-border px-2 py-2">
-            <Select value={provider} onValueChange={setProvider}>
-              <SelectTrigger className="h-9 w-auto gap-2 border-border/60 bg-transparent">
-                <Cpu size={14} className="opacity-60" />
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="gemini">Gemini</SelectItem>
-                <SelectItem value="groq">Groq</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={lang} onValueChange={setLang}>
+            <Select value={lang} onValueChange={setLang} disabled={loading}>
               <SelectTrigger className="h-9 w-auto gap-2 border-border/60 bg-transparent">
                 <Languages size={14} className="opacity-60" />
                 <SelectValue />
@@ -67,10 +82,10 @@ function WorkflowHome() {
 
             <div className="ml-auto">
               <Button
-                onClick={() => navigate({ to: "/app/tech-preferences" })}
-                disabled={!idea.trim()}
+                onClick={handleStart}
+                disabled={!idea.trim() || loading}
               >
-                Mulai Perencanaan <ArrowRight className="ml-2 h-4 w-4" />
+                {loading ? "Menyiapkan..." : "Mulai Perencanaan"} <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>

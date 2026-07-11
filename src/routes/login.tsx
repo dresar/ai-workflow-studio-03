@@ -126,9 +126,33 @@ function LoginPage() {
             </form>
 
             <div className="mt-6 rounded-md border border-border/60 bg-muted/40 p-3 text-xs text-muted-foreground">
-              <div className="font-medium text-foreground/80">Demo Kredensial</div>
-              <div className="mt-1">Admin: <code>admin@app.com</code> / <code>admin123</code></div>
-              <div>User: <code>user@app.com</code> / <code>user123</code></div>
+              <div className="font-medium text-foreground/80 mb-2 text-center">Pilih Login Demo (Klik untuk Isi)</div>
+              <div className="flex gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="w-full text-xs h-8 border-border bg-card/60 hover:bg-card"
+                  onClick={() => {
+                    setEmail("admin@app.com");
+                    setPassword("admin123");
+                  }}
+                >
+                  Admin Demo
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="w-full text-xs h-8 border-border bg-card/60 hover:bg-card"
+                  onClick={() => {
+                    setEmail("user@app.com");
+                    setPassword("user123");
+                  }}
+                >
+                  User Demo
+                </Button>
+              </div>
             </div>
           </div>
 
