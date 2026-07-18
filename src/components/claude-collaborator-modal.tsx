@@ -126,16 +126,16 @@ CRITICAL RULES:
       } else if (documentType === "prompt") {
         promptText += `
 YOUR TASK:
-Generate an extremely comprehensive, exhaustive, and verbose "Vibe Coding Super Prompt" (modeled after prompt structures used in high-end generation engines like Lovable.dev, Bolt.new, or v0) to build this application from scratch.
+Generate an extremely comprehensive, exhaustive, and verbose "Vibe Coding Super Prompt" (modeled after prompt structures used in high-end generation engines) to build this application from scratch.
 
 CRITICAL FOCUS (DO NOT SKIP ANY PAGES OR ENDPOINTS):
-- Coding platforms like Lovable or Bolt often skip pages or components if they are not explicitly detailed. To prevent this, you MUST list and describe EVERY SINGLE page, modal, form, layout, and component from the project requirements in extreme detail.
+- Coding platforms often skip pages or components if they are not explicitly detailed. To prevent this, you MUST list and describe EVERY SINGLE page, modal, form, layout, and component from the project requirements in extreme detail.
 - You must prioritize the **UI/UX & Frontend** and **Backend & System Flow** sections. Provide full code blocks, exact Tailwind classes, folder structures, complete API route handlers, and middleware definitions rather than summaries or placeholders.
 
 CRITICAL JSON SPECIFICATIONS - YOU MUST COMPLY:
 To allow the application to easily parse and display each module, you MUST output ONLY a valid JSON object. Do not write any conversational markdown or explanation outside the JSON. The JSON structure MUST follow this exact schema:
 {
-  "frontend": "Detailed UI/UX & Frontend specifications. For each page in the inventory, detail its purpose, layout, components, Tailwind styling classes, animations, micro-interactions, responsive behavior, and alt text validations. Provide complete page blueprints so Lovable/Bolt will build all of them without skipping anything.",
+  "frontend": "Detailed UI/UX & Frontend specifications. For each page in the inventory, detail its purpose, layout, components, Tailwind styling classes, animations, micro-interactions, responsive behavior, and alt text validations. Provide complete page blueprints so AI coding platforms will build all of them without skipping anything.",
   "backend": "Detailed Backend System Flow & API Architecture specifications. Detail the complete directory tree structure, absolute file paths, every single API route endpoint (method, request, response schemas, and logic), authentication RBAC middleware flows, and service integrations.",
   "database": "Pure PostgreSQL SQL Database schemas. Include complete CREATE TABLE DDLs (using UUIDs, proper foreign keys with ON DELETE CASCADE, TIMESTAMPTZ timestamps, CREATE INDEX statements), and robust INSERT statements for initial seeding.",
   "tasks": "At least 30-45 numbered AI Vibe Coding tasks in exact chronological order for coding agents (Setup -> Database -> Backend -> Frontend -> Integration). List exactly which files to create, what code to write, and what commands to run."
